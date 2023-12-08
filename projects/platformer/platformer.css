@@ -1,11 +1,11 @@
 body {
-  margin: 0px;
+  margin 0;
 }
 
 canvas {
-  background-color: lightgray;
-}
+  background-image:url(https://i.postimg.cc/zfhPGbB7/stone-terraria.png)
 
+}
 img {
   display: none;
 }
