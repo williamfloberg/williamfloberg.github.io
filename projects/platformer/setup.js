@@ -91,12 +91,8 @@ let halleImage;
 let animationDetails = {};
 
 var collectableList = {
-  database: { image: "images/collectables/database.png" },
-  diamond: { image: "images/collectables/diamond-head.png" },
-  grace: { image: "images/collectables/grace-head.png" },
-  kennedi: { image: "images/collectables/kennedi-head.png" },
-  max: { image: "images/collectables/max-head.png" },
-  steve: { image: "images/collectables/steve-head.png" },
-  diamond: {image: "images/collectables/terraria diamond.png"}
-  gold: {image: "image/collectables/terraria gold.png"}
+  diamond: {image: "images/collectables/terraria diamond.png"},
+  gold: {image: "images/collectables/terraria-gold.png"},
+  titanium: {image: "images/collectables/terraria-titanium.png"},
+  zenith: {image: "images/collectables/terraria-zenith.png"},
 };
