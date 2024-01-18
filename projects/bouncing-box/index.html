@@ -62,26 +62,29 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
-
-			
+			var positionX = 0;
+			var points = 0;
+			var speed = 0;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-				
-
+			positionX = positionX + 10;
+				moveBoxTo(positionX)
 			};
-
+			
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
+				positionX = 0;
+				points = points + 1;
+				speed = speed + 3;
+				changeBoxText(points);
 
 
 			};
