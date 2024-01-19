@@ -19,6 +19,7 @@
 		}
 		.board{
 			height: 100vh;
+			background-image:url(project-instructions/img/black.png);
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -76,8 +77,9 @@
 			if (positionX > boardWidth){
 				speed = -speed;
 			}
+			
 			if (positionX < 0){
-				speed !== -speed;
+				speed = -speed;
 			}
 			};
 			
