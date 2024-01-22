@@ -8,7 +8,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: rgb(255, 0, 0);
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -19,8 +19,9 @@
 		}
 		.board{
 			height: 100vh;
-			background-image:url(project-instructions/img/black.png);
-		}
+			width: 100vh;
+			background-image: url(https://i.postimg.cc/NFcCZqLb/New-Project-4.png);
+;		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
@@ -41,7 +42,7 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
-
+			var boardHeight = board.height();
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
 			
@@ -49,8 +50,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY)
 			}
 
 			// changes the text displayed on the Box
@@ -66,6 +68,8 @@
 			var positionX = 0;
 			var points = 0;
 			var speed = 10;
+			var positionY = 0;
+			var speedY = 10;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
@@ -73,7 +77,8 @@
 			*/
 			function update() {
 			positionX = positionX + speed;
-				moveBoxTo(positionX)
+			positionY = positionY + speedY
+				moveBoxTo(positionX, positionY)
 			if (positionX > boardWidth){
 				speed = -speed;
 			}
@@ -81,7 +86,16 @@
 			if (positionX < 0){
 				speed = -speed;
 			}
-			};
+				if (positonY > boardHeight){
+				speedY = -speed;
+			}
+
+			if (positionY < 0){
+				speed = -speed;
+			}
+		}
+			
+			
 			
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
