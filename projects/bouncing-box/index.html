@@ -19,7 +19,7 @@
 		}
 		.board{
 			height: 100vh;
-			width: 100vh;
+			width: 100vw;
 			background-image: url(https://i.postimg.cc/NFcCZqLb/New-Project-4.png);
 ;		}
 	</style>
@@ -82,16 +82,14 @@
 			if (positionX > boardWidth){
 				speed = -speed;
 			}
-			
 			if (positionX < 0){
 				speed = -speed;
 			}
-				if (positonY > boardHeight){
-				speedY = -speed;
+			if (positionY >= boardHeight){
+				speedY = -speedY;
 			}
-
-			if (positionY < 0){
-				speed = -speed;
+			if (positionY <= 0){
+				speedY = -speedY;
 			}
 		}
 			
