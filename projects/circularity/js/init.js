@@ -25,7 +25,7 @@ var init = function (window) {
         // TODO 2 : Create a function that draws a circle 
     function drawCircle(){
     circle = draw.randomCircleInArea(canvas, true, true, "#999", 2); //uses a previously existing function to draw a cirlce of random size, color, and location. It stores the output of that function.
-        physikz.addRandomVelocity(circle, canvas, 50, 50); //uses the physikz library to give the circle a random velocity/direction
+        physikz.addRandomVelocity(circle, canvas, 20, 20); //uses the physikz library to give the circle a random velocity/direction
         view.addChild(circle); //this adds the circle as a child of view so it can be visible on the canvas
         circles.push(circle); //saves the circle to an array by pushing it to the end of the array
     }
@@ -46,11 +46,11 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-for (var i = 0; i < circles.length;i++){
+for (var i = 0; i < circles.length;i++){ //updates the circles positon 60 times a second so it moves
 physikz.updatePosition(circles[i]);
 }
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-         for (var i = 0; i < circles.length;i++)
+         for (var i = 0; i < circles.length;i++) //checks the postion of the circles to make sure they're in the screen
          game.checkCirclePosition(circles[i]);
             // TODO 8/9 : Iterate over the array
            
