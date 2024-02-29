@@ -65,19 +65,19 @@ physikz.updatePosition(circles[i]);
         game.checkCirclePosition = function(circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if ( circle.x > canvas.width ) {
+            if ( circle.x > canvas.width ) { // what it says right there ^
                 circle.x = 0;
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
             if ( circle.x < 0) {
-                circle.x = canvas.width;
+                circle.x = canvas.width; //if circle goes past left side of screen it places it on the right
             }
-            if (circle.y > canvas.height) {
+            if (circle.y > canvas.height) { //if code goes past the top of the screen it places it at the bottom
                 circle.y = 0;
             }
             if (circle.y < 0){
-                circle.y = canvas.height
+                circle.y = canvas.height //if code goes past the bottom of the screen it places it at the top
             }
 
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
