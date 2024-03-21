@@ -63,7 +63,7 @@ var background = function (window) {
                 var buildingHeight = 200 * Math.random(); //declared a building height variable and set it to 300
                 var building = draw.rect(75, buildingHeight, "LightGray", "Black", 1); //creates a rectangle
                 building.x = 200 * i; //sets the x value of the buildings by taking the current iteration and multiplying it by 200, making the each building 200 pixels from the last
-                building.y = groundY - buildingHeight;
+                building.y = groundY - buildingHeight; //sets the buildings y value to the ground minus the buildings height so it doesn't clip through the ground
                 background.addChild(building); //adds a building as a child to the background
                 buildings.push(building); //pushes the buildings to each index of the array
               }
@@ -92,10 +92,10 @@ var background = function (window) {
             }
             // TODO 4: Part 2 - Parallax
             for (var i = 0; i < buildings.length; i++) { //creates a for loop that iterates through buildings length
-                var building = buildings[i];
-             building.x = building.x - 3
-            if(building.x < -300){
-                building.x = canvasWidth
+                var building = buildings[i]; //
+             building.x = building.x - 3 // makes the building move at 3 pixels to the left
+            if(building.x < -300){ //if statement for when the building's x position moves past -300
+                building.x = canvasWidth //moves the building's x position to canvas width
             }
             } 
 
