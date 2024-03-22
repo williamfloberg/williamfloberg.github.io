@@ -18,26 +18,25 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createSawBlade(x, y){ // 
-      var hitZoneSize = 25; // 
-      var damageFromObstacle = 125; // 
+    function createSawBlade(x, y){ // creates sawBlade function
+      var hitZoneSize = 25; // sets the saw's hitbox size
+      var damageFromObstacle = 125; // sets the saw's damage
       var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // 
-      sawBladeHitZone.x = x; // 
-      sawBladeHitZone.y = y; // 
-      game.addGameItem(sawBladeHitZone); // 
-      var obstacleImage = draw.bitmap("img/sawblade.png"); // 
-      sawBladeHitZone.addChild(obstacleImage); //     
-      obstacleImage.x = -25; // 
-      obstacleImage.y = -25; // 
-      sawBladeHitZone.rotationalVelocity = -5;
+      sawBladeHitZone.x = x; // sets the hitbox's x coordinate
+      sawBladeHitZone.y = y; // sets the hitbox's y coordinate
+      game.addGameItem(sawBladeHitZone); // adds the hitbox into the game
+      var obstacleImage = draw.bitmap("img/sawblade.png"); // gives the obstacle an image
+      sawBladeHitZone.addChild(obstacleImage); //     adds the image as a child of the hitzone
+      obstacleImage.x = -25; // sets the x coordinate of the sawblade in relevance to the hitbox
+      obstacleImage.y = -25; // sets the y coordinate of the sawblade in relevance to the hitbox
+      sawBladeHitZone.rotationalVelocity = -5; // sets the rotational 
     }
-    function createEnemy(x, y){ // 
-      var enemy = game.createGameItem("enemy", 25); // 
-      var redSquare = draw.rect(50, 50, "red"); // 
-      redSquare.x = -25; // 
-      redSquare.y = -25; // 
-      enemy.addChild(redSquare); // 
-      enemy.addChild(redSquare); // 
+    function createEnemy(x, y){ // creates createEnemy function
+      var enemy = game.createGameItem("enemy", 25); // creates a variable enemy and assigns it parameters
+      var redSquare = draw.rect(50, 50, "red"); // creates a variable and draws it
+      redSquare.x = -25; // sets the x coordinate of the redsquare in relevance to the hitbox
+      redSquare.y = -25; // sets the y coordinate of the redsquare in relevance to the hitbox
+      enemy.addChild(redSquare); // adds redSquare as a child of enemy
       enemy.x = x; // 
       enemy.y = y // 
       game.addGameItem(enemy); // 
@@ -71,24 +70,25 @@ var runLevels = function (window) {
     function createMarker(){
       var marker = game.createGameItem("enemy", 25); // 
       var blueSquare = draw.rect(50, 50, "blue"); // 
-      blueSquare.x = -25; // 
-      blueSquare.y = -25; // 
-      marker.addChild(blueSquare); //
-      marker.x = x; // 
-      marker.y = y // 
-      game.addGameItem(marker); // 
-      marker.velocityX = -5; // 
+      blueSquare.x = -25; // sets the reward's x position in relevance to it's hitbox
+      blueSquare.y = -25; // sets the reward's y position in relevance to it's hitbox
+      marker.addChild(blueSquare); // adds blueSquare to a child of marker
+      marker.x = x; // sets the x coordinate of the marker
+      marker.y = y // sets the y coordinate of the marker
+      game.addGameItem(marker); // adds the marker to the game
+      marker.velocityX = -5; // makes the marker move to the left at a velocity of 5
       
       marker.onPlayerCollision = function () { // makes marker.onPlayerCollision into a function
         game.changeIntegrity(-10); // makes HalleBot loose 10 health on marker collision
-      marker.shrink(); //
+      marker.shrink(); // makes the marker shrink when 
+      }
     }
     //function calls
     createSawBlade(1000, groundY- 120) // calls sawblade function
     createSawBlade(800, groundY- 120) // calls sawblade function
     createSawBlade(600, groundY- 120) // calls sawblade function
     createEnemy(1500, groundY - 50) // calls enemy function
-    createReward(1000, groundY - 75)
+    createReward(1000, groundY - 75) // calls reward fuction
     function startLevel() {
       // TODO 13 goes below here
 
