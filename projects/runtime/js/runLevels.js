@@ -37,10 +37,10 @@ var runLevels = function (window) {
       redSquare.x = -25; // sets the x coordinate of the redsquare in relevance to the hitbox
       redSquare.y = -25; // sets the y coordinate of the redsquare in relevance to the hitbox
       enemy.addChild(redSquare); // adds redSquare as a child of enemy
-      enemy.x = x; // 
-      enemy.y = y // 
-      game.addGameItem(enemy); // 
-      enemy.velocityX = -5; // 
+      enemy.x = x; // assigns the enemy to the functions x parameter
+      enemy.y = y // assigns the enemy to the functions y parameter
+      game.addGameItem(enemy); // adds the enemy into the game
+      enemy.velocityX = -5; // sets the enemy's velocity to -5 so it moves left
       
       enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
         game.changeIntegrity(-10); // makes HalleBot loose 10 health on enemy collision
@@ -51,7 +51,7 @@ var runLevels = function (window) {
         enemy.fadeOut(); // makes enemy fade out when shot
       };
     }
-    function createReward(x, y){ // 
+    function createReward(x, y){ // creates a reward fuction
       var reward = game.createGameItem("enemy", 25); // creates a variable named award and assigned it to game.CreateGameItem
       var blueSquare = draw.rect(50, 50, "blue"); // creats a variable and draws it in the game
       blueSquare.x = -25; // sets the squares x coordinate
@@ -64,15 +64,15 @@ var runLevels = function (window) {
       
       reward.onPlayerCollision = function () { // makes reward.onPlayerCollision into a function
         game.changeIntegrity(-10); // makes HalleBot loose 10 health on reward collision
-      reward.shrink(); //
+      reward.shrink(); // makes the reward shrink after contacting the player
       };  
     }
     function createMarker(){
-      var marker = game.createGameItem("enemy", 25); // 
-      var blueSquare = draw.rect(50, 50, "blue"); // 
-      blueSquare.x = -25; // sets the reward's x position in relevance to it's hitbox
-      blueSquare.y = -25; // sets the reward's y position in relevance to it's hitbox
-      marker.addChild(blueSquare); // adds blueSquare to a child of marker
+      var marker = game.createGameItem("enemy", 25); // creates a variable named marker and assigns it parameters
+      var greenSquare = draw.rect(50, 50, "green"); // draws the square representing the marker
+      greenSquare.x = -25; // sets the reward's x position in relevance to it's hitbox
+      greenSquare.y = -25; // sets the reward's y position in relevance to it's hitbox
+      marker.addChild(greenSquare); // adds greenSquare to a child of marker
       marker.x = x; // sets the x coordinate of the marker
       marker.y = y // sets the y coordinate of the marker
       game.addGameItem(marker); // adds the marker to the game
