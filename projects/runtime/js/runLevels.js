@@ -53,7 +53,7 @@ var runLevels = function (window) {
     }
     function createReward(x, y){ // creates a reward fuction
       var reward = game.createGameItem("enemy", 25); // creates a variable named award and assigned it to game.CreateGameItem
-      var blueSquare = draw.rect(50, 50, "blue"); // creats a variable and draws it in the game
+      var blueSquare = draw.bitmap('image/companion.png'); // creats a variable and draws it in the game
       blueSquare.x = -25; // sets the squares x coordinate
       blueSquare.y = -25; // sets the squares y coordinate
       reward.addChild(blueSquare); // adds the blueSquare as a chilf of rewards
@@ -65,7 +65,7 @@ var runLevels = function (window) {
       reward.onPlayerCollision = function () { // makes reward.onPlayerCollision into a function
         game.changeIntegrity(-10); // makes HalleBot loose 10 health on reward collision
       reward.shrink(); // makes the reward shrink after contacting the player
-      };  
+      };
     }
     function createMarker(){
       var marker = game.createGameItem("enemy", 25); // creates a variable named marker and assigns it parameters
