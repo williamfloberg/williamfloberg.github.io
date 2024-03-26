@@ -33,15 +33,16 @@ var runLevels = function (window) {
     }
     function createEnemy(x, y){ // creates createEnemy function
       var enemy = game.createGameItem("enemy", 25); // creates a variable enemy and assigns it parameters
-      var redSquare = draw.rect(50, 50, "red"); // creates a variable and draws it
+      var redSquare = draw.bitmap('img/turret.png'); // creates a variable and draws it
       redSquare.x = -25; // sets the x coordinate of the redsquare in relevance to the hitbox
-      redSquare.y = -25; // sets the y coordinate of the redsquare in relevance to the hitbox
+      redSquare.y = -45; // sets the y coordinate of the redsquare in relevance to the hitbox
       enemy.addChild(redSquare); // adds redSquare as a child of enemy
       enemy.x = x; // assigns the enemy to the functions x parameter
       enemy.y = y // assigns the enemy to the functions y parameter
       game.addGameItem(enemy); // adds the enemy into the game
       enemy.velocityX = -5; // sets the enemy's velocity to -5 so it moves left
-      
+      enemy.scaleX = -0.7
+      enemy.scaleY = 0.7
       enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
         game.changeIntegrity(-10); // makes HalleBot loose 10 health on enemy collision
       };
@@ -52,8 +53,8 @@ var runLevels = function (window) {
       };
     }
     function createReward(x, y){ // creates a reward fuction
-      var reward = game.createGameItem("enemy", 25); // creates a variable named award and assigned it to game.CreateGameItem
-      var blueSquare = draw.bitmap('image/companion.png'); // creats a variable and draws it in the game
+      var reward = game.createGameItem("enemy", 5); // creates a variable named award and assigned it to game.CreateGameItem
+      var blueSquare = draw.bitmap('img/companion.png'); // creats a variable and draws it in the game
       blueSquare.x = -25; // sets the squares x coordinate
       blueSquare.y = -25; // sets the squares y coordinate
       reward.addChild(blueSquare); // adds the blueSquare as a chilf of rewards
@@ -61,9 +62,10 @@ var runLevels = function (window) {
       reward.y = y // sets the blueSquares y coordinate
       game.addGameItem(reward); // adds the reward to the game
       reward.velocityX = -5; // makes the reward move to the left at a velocity of 5
-      
+      reward.scaleX = .3
+      reward.scaleY = .3
       reward.onPlayerCollision = function () { // makes reward.onPlayerCollision into a function
-        game.changeIntegrity(-10); // makes HalleBot loose 10 health on reward collision
+        game.changeIntegrity(+10); // makes HalleBot loose 10 health on reward collision
       reward.shrink(); // makes the reward shrink after contacting the player
       };
     }
@@ -74,25 +76,38 @@ var runLevels = function (window) {
       greenSquare.y = -25; // sets the reward's y position in relevance to it's hitbox
       marker.addChild(greenSquare); // adds greenSquare to a child of marker
       marker.x = x; // sets the x coordinate of the marker
-      marker.y = y // sets the y coordinate of the marker
+      marker.y = y; // sets the y coordinate of the marker
       game.addGameItem(marker); // adds the marker to the game
       marker.velocityX = -5; // makes the marker move to the left at a velocity of 5
       
       marker.onPlayerCollision = function () { // makes marker.onPlayerCollision into a function
-        game.changeIntegrity(-10); // makes HalleBot loose 10 health on marker collision
+        game.changeIntegrity(+10); // makes HalleBot loose 10 health on marker collision
       marker.shrink(); // makes the marker shrink when 
       }
     }
     //function calls
-    createSawBlade(1000, groundY- 120) // calls sawblade function
-    createSawBlade(800, groundY- 120) // calls sawblade function
-    createSawBlade(600, groundY- 120) // calls sawblade function
     createEnemy(1500, groundY - 50) // calls enemy function
     createReward(1000, groundY - 75) // calls reward fuction
+    createMarker(700, groundY - 50)
     function startLevel() {
       // TODO 13 goes below here
-
-
+      var level = levelData[currentLevel];
+      var levelObjects = level.gameItems
+      for(var i = 0; i < levelObjects.length; i++){
+        var item = levelObjects[i];
+        if(item.type === "sawblade"){
+          createSawBlade(item.x, item.y)
+        }
+        if(item.type === "enemy"){
+          createSawBlade(item.x, item.y)
+        }
+        if(item.type === "reward"){
+          createSawBlade(item.x, item.y)
+        }
+        if(item.type === "marker"){
+          createSawBlade(item.x, item.y)
+        }
+      }
 
       //////////////////////////////////////////////
       // DO NOT EDIT CODE BELOW HERE
