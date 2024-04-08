@@ -71,7 +71,7 @@ var background = function (window) {
             // TODO 3: Part 1 - Add a tree
             tree = draw.bitmap("img/tree.png"); // assigns tree variable to an image
             tree.x = canvasWidth; // changes the x position of image
-            tree.y = groundY -200; // cahnges the y position of image
+            tree.y = groundY - 450; // cahnges the y position of image
             background.addChild(tree); // adds tree as a child of the background
             
         } // end of render function - DO NOT DELETE
@@ -85,9 +85,9 @@ var background = function (window) {
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
             
-            // TODO 3: Part 2 - Move the tree!
-            tree.x = tree.x - 10; // the current x value of the tree is reassigned
-            if(tree.x < -300){ // checks if the tree has gone off the left side of the canvas
+            // TODO 3: Part 2 - Move the tree! (another note i just renamed my thing tree because im lazy lol)
+            tree.x = tree.x - 5; // the current x value of the tree is reassigned
+            if(tree.x < -1000){ // checks if the tree has gone off the left side of the canvas
                 tree.x = canvasWidth // if it has, it gets set back to the right side of the canvas
             }
             // TODO 4: Part 2 - Parallax
