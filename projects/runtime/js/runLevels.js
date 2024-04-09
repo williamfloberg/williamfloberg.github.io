@@ -71,7 +71,7 @@ var runLevels = function (window) {
     }
     function createMarker(){
       var marker = game.createGameItem("enemy", 25); // creates a variable named marker and assigns it parameters
-      var greenSquare = draw.rect(50, 50, "green"); // draws the square representing the marker
+      var greenSquare = draw.bitmap('img/storage.png'); // draws the square representing the marker
       greenSquare.x = -25; // sets the reward's x position in relevance to it's hitbox
       greenSquare.y = -25; // sets the reward's y position in relevance to it's hitbox
       marker.addChild(greenSquare); // adds greenSquare to a child of marker
@@ -85,10 +85,6 @@ var runLevels = function (window) {
       marker.shrink(); // makes the marker shrink when 
       }
     }
-    //function calls
-    createEnemy(1500, groundY - 50) // calls enemy function
-    createReward(1000, groundY - 75) // calls reward fuction
-    createMarker(700, groundY - 50)
     function startLevel() {
       // TODO 13 goes below here
       var level = levelData[currentLevel];
@@ -102,10 +98,10 @@ var runLevels = function (window) {
           createSawBlade(item.x, item.y)
         }
         if(item.type === "reward"){
-          createSawBlade(item.x, item.y)
+          createReward(item.x, item.y)
         }
         if(item.type === "marker"){
-          createSawBlade(item.x, item.y)
+          createMarker(item.x, item.y)
         }
       }
 

@@ -11,26 +11,14 @@ var makeLevelData = function (window) {
     // TODO 12: change the below data
     var levelData = [
       {
-        name: "Robot Romp",
+        name: "Stage 1",
         number: 1,
-        speed: -3,
-        gameItems: [
-          { type: "sawblade", x: 400, y: groundY - 120 },
-          { type: "sawblade", x: 600, y: groundY - 120 },
-          { type: "sawblade", x: 900, y: groundY - 120 },
-          { type: "enemy", x: 400, y: groundY - 120 },
-          { type: "reward", x: 600, y: groundY - 120 },
-          { type: "marker", x: 900, y: groundY - 120 },
-        ],
-      },
-      {
-        name: "Robot Rampage",
-        number: 2,
-        speed: -3,
+        speed: -10,
         gameItems: [
           { type: "sawblade", x: 400, y: groundY },
           { type: "sawblade", x: 600, y: groundY },
-          { type: "sawblade", x: 900, y: groundY },
+          { type: "sawblade", x: 800, y: groundY },
+          { type: "marker", x: 600, y: groundY },
         ],
       },
     ];
