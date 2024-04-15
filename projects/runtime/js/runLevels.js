@@ -18,18 +18,20 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createSawBlade(x, y){ // creates sawBlade function
-      var hitZoneSize = 25; // sets the saw's hitbox size
+    function createSawBlade(x, y){ // creates sawBlade function (got lazy and made this another obstacle w/o renaming it)
+      var hitZoneSize = 20; // sets the saw's hitbox size
       var damageFromObstacle = 125; // sets the saw's damage
       var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // 
       sawBladeHitZone.x = x; // sets the hitbox's x coordinate
       sawBladeHitZone.y = y; // sets the hitbox's y coordinate
-      game.addGameItem(sawBladeHitZone); // adds the hitbox into the game
-      var obstacleImage = draw.bitmap("img/sawblade.png"); // gives the obstacle an image
+      game.addGameItem(sawBladeHitZone); // adds the hitbox into the game 
+      var obstacleImage = draw.bitmap("img/sawblade.png"); // gives the obstacle an image 
       sawBladeHitZone.addChild(obstacleImage); //     adds the image as a child of the hitzone
-      obstacleImage.x = -25; // sets the x coordinate of the sawblade in relevance to the hitbox
-      obstacleImage.y = -25; // sets the y coordinate of the sawblade in relevance to the hitbox
-      sawBladeHitZone.rotationalVelocity = -5; // sets the rotational 
+      obstacleImage.x = -25// sets the x coordinate of the sawblade in relevance to the hitbox
+      obstacleImage.y = -45 // sets the y coordinate of the sawblade in relevance to the hitbox
+      obstacleImage.scaleX = 0.06
+      obstacleImage.scaleY = 0.06
+      sawBladeHitZone.velocityX = -5
     }
     function createEnemy(x, y){ // creates createEnemy function
       var enemy = game.createGameItem("enemy", 25); // creates a variable enemy and assigns it parameters
@@ -69,7 +71,7 @@ var runLevels = function (window) {
       reward.shrink(); // makes the reward shrink after contacting the player
       };
     }
-    function createMarker(){
+    function createMarker(x,y){
       var marker = game.createGameItem("enemy", 25); // creates a variable named marker and assigns it parameters
       var greenSquare = draw.bitmap('img/storage.png'); // draws the square representing the marker
       greenSquare.x = -25; // sets the reward's x position in relevance to it's hitbox

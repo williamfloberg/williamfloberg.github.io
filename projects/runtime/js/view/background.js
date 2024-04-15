@@ -42,7 +42,7 @@ var background = function (window) {
             // you should modify both the height and color to suit your game
             var backgroundFill = draw.bitmap('img/background.png'); //creates a variable named background fill
             background.addChild(backgroundFill); //adds backgroundFill as a child to the background
-            
+            /*
             // TODO 2: - Add a moon and starfield
             for(var stars = 0;stars < 150; stars++){ //
             var circle = draw.circle(4, "white", "yellow", 1); //draws a circle, stores it to a variable
@@ -67,6 +67,7 @@ var background = function (window) {
                 background.addChild(building); //adds a building as a child to the background
                 buildings.push(building); // pushes the buildings to each index of the array
               }
+            */
             
             // TODO 3: Part 1 - Add a tree
             tree = draw.bitmap("img/tree.png"); // assigns tree variable to an image

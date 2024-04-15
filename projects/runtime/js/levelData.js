@@ -13,7 +13,7 @@ var makeLevelData = function (window) {
       {
         name: "Stage 1",
         number: 1,
-        speed: -10,
+        speed: -20,
         gameItems: [
           { type: "sawblade", x: 400, y: groundY },
           { type: "sawblade", x: 600, y: groundY },
