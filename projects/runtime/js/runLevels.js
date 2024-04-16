@@ -34,10 +34,10 @@ var runLevels = function (window) {
       sawBladeHitZone.velocityX = -5
     }
     function createEnemy(x, y){ // creates createEnemy function
-      var enemy = game.createGameItem("enemy", 25); // creates a variable enemy and assigns it parameters
+      var enemy = game.createGameItem("enemy", 30); // creates a variable enemy and assigns it parameters
       var redSquare = draw.bitmap('img/turret.png'); // creates a variable and draws it
-      redSquare.x = -25; // sets the x coordinate of the redsquare in relevance to the hitbox
-      redSquare.y = -45; // sets the y coordinate of the redsquare in relevance to the hitbox
+      redSquare.x = -60; // sets the x coordinate of the enemy png in relevance to the hitbox
+      redSquare.y = -45; // sets the y coordinate of the enemy png in relevance to the hitbox
       enemy.addChild(redSquare); // adds redSquare as a child of enemy
       enemy.x = x; // assigns the enemy to the functions x parameter
       enemy.y = y // assigns the enemy to the functions y parameter
@@ -46,11 +46,11 @@ var runLevels = function (window) {
       enemy.scaleX = -0.7
       enemy.scaleY = 0.7
       enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
-        game.changeIntegrity(-10); // makes HalleBot loose 10 health on enemy collision
+        game.changeIntegrity(-1000); // makes HalleBot loose 10 health on enemy collision
       };
     
       enemy.onProjectileCollision = function (){ // makes enemy.onProjcetileCollision into a function
-        game.increaseScore(100); // increases score by 100 when enemies shot
+        game.increaseScore(500); // increases score by 100 when enemies shot
         enemy.fadeOut(); // makes enemy fade out when shot
       };
     }
@@ -59,7 +59,7 @@ var runLevels = function (window) {
       var blueSquare = draw.bitmap('img/companion.png'); // creats a variable and draws it in the game
       blueSquare.x = -25; // sets the squares x coordinate
       blueSquare.y = -25; // sets the squares y coordinate
-      reward.addChild(blueSquare); // adds the blueSquare as a chilf of rewards
+      reward.addChild(blueSquare); // adds the blueSquare as a child of rewards
       reward.x = x; // sets the blueSquares x coordinate
       reward.y = y // sets the blueSquares y coordinate
       game.addGameItem(reward); // adds the reward to the game
@@ -80,11 +80,14 @@ var runLevels = function (window) {
       marker.x = x; // sets the x coordinate of the marker
       marker.y = y; // sets the y coordinate of the marker
       game.addGameItem(marker); // adds the marker to the game
+      marker.scaleX = .3 // scales the marker png to fit its x axis
+      marker.scaleY = .3 // scales the marker png to fit its y axis
       marker.velocityX = -5; // makes the marker move to the left at a velocity of 5
       
       marker.onPlayerCollision = function () { // makes marker.onPlayerCollision into a function
-        game.changeIntegrity(+10); // makes HalleBot loose 10 health on marker collision
+      game.increaseScore(1000)
       marker.shrink(); // makes the marker shrink when 
+      startLevel();
       }
     }
     function startLevel() {
@@ -97,7 +100,7 @@ var runLevels = function (window) {
           createSawBlade(item.x, item.y)
         }
         if(item.type === "enemy"){
-          createSawBlade(item.x, item.y)
+          createEnemy(item.x, item.y)
         }
         if(item.type === "reward"){
           createReward(item.x, item.y)
