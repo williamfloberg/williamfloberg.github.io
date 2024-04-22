@@ -18,6 +18,7 @@ var makeLevelData = function (window) {
           { type: "sawblade", x: 400, y: groundY },
           { type: "sawblade", x: 600, y: groundY },
           { type: "sawblade", x: 800, y: groundY },
+          { type: "laser", x: 600, y: groundY - 50 },
           { type: "sawblade", x: 2000, y: groundY},
           { type: "sawblade", x: 2300, y: groundY},
           { type: "sawblade", x: 4200, y: groundY},

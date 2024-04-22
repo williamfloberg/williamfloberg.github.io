@@ -27,11 +27,27 @@ var runLevels = function (window) {
       game.addGameItem(sawBladeHitZone); // adds the hitbox into the game 
       var obstacleImage = draw.bitmap("img/sawblade.png"); // gives the obstacle an image 
       sawBladeHitZone.addChild(obstacleImage); //     adds the image as a child of the hitzone
-      obstacleImage.x = -25// sets the x coordinate of the sawblade in relevance to the hitbox
+      obstacleImage.x = -25 // sets the x coordinate of the sawblade in relevance to the hitbox
       obstacleImage.y = -45 // sets the y coordinate of the sawblade in relevance to the hitbox
       obstacleImage.scaleX = 0.06
       obstacleImage.scaleY = 0.06
       sawBladeHitZone.velocityX = -5
+    }
+    function createLaser(x, y){
+      var hitZoneSize = 20;
+      var damageFromObstacle = 125
+      var laserHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+      laserHitZone.x = x - 200
+      laserHitZone.x = y + 800;
+      game.addGameItem(laserHitZone);
+      var obstacleImage = draw.bitmap("img/laser.png");
+      laserHitZone.addChild(obstacleImage);
+      obstacleImage.x = x
+      obstacleImage.y = y
+      obstacleImage.scaleX = .07
+      obstacleImage.scaleY = .07
+      laserHitZone.velocityX = -5
+
     }
     function createEnemy(x, y){ // creates createEnemy function
       var enemy = game.createGameItem("enemy", 30); // creates a variable enemy and assigns it parameters
@@ -107,6 +123,9 @@ var runLevels = function (window) {
         }
         if(item.type === "marker"){
           createMarker(item.x, item.y)
+        }
+        if(item.type === "laser"){
+          createLaser(item.x, item.y)
         }
       }
 
