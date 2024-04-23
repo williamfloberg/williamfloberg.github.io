@@ -34,20 +34,19 @@ var runLevels = function (window) {
       sawBladeHitZone.velocityX = -5
     }
     function createLaser(x, y){
-      var hitZoneSize = 20;
+      var hitZoneSize = 50;
       var damageFromObstacle = 125
       var laserHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
-      laserHitZone.x = x - 200
-      laserHitZone.x = y + 800;
+      laserHitZone.x = x;
+      laserHitZone.y = y;
       game.addGameItem(laserHitZone);
       var obstacleImage = draw.bitmap("img/laser.png");
       laserHitZone.addChild(obstacleImage);
-      obstacleImage.x = x
-      obstacleImage.y = y
+      obstacleImage.x = -65
+      obstacleImage.y = 0
       obstacleImage.scaleX = .07
       obstacleImage.scaleY = .07
       laserHitZone.velocityX = -5
-
     }
     function createEnemy(x, y){ // creates createEnemy function
       var enemy = game.createGameItem("enemy", 30); // creates a variable enemy and assigns it parameters
@@ -63,6 +62,28 @@ var runLevels = function (window) {
       enemy.scaleY = 0.7
       enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
         game.changeIntegrity(-1000); // makes HalleBot loose 10 health on enemy collision
+      };
+    
+      enemy.onProjectileCollision = function (){ // makes enemy.onProjcetileCollision into a function
+        game.increaseScore(500); // increases score by 100 when enemies shot
+        enemy.fadeOut(); // makes enemy fade out when shot
+      };
+    
+    }
+    function createDummy(x, y){ // creates createEnemy function
+      var enemy = game.createGameItem("dummy", 30); // creates a variable enemy and assigns it parameters
+      var redSquare = draw.bitmap('img/wheatley.png'); // creates a variable and draws it
+      redSquare.x = -60; // sets the x coordinate of the enemy png in relevance to the hitbox
+      redSquare.y = -45; // sets the y coordinate of the enemy png in relevance to the hitbox
+      enemy.addChild(redSquare); // adds redSquare as a child of enemy
+      enemy.x = x; // assigns the enemy to the functions x parameter
+      enemy.y = y // assigns the enemy to the functions y parameter
+      game.addGameItem(enemy); // adds the enemy into the game
+      enemy.velocityX = -5; // sets the enemy's velocity to -5 so it moves left
+      enemy.scaleX = -0.7
+      enemy.scaleY = 0.7
+      enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
+        game.changeIntegrity(-75); // makes HalleBot loose 10 health on enemy collision
       };
     
       enemy.onProjectileCollision = function (){ // makes enemy.onProjcetileCollision into a function
