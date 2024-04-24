@@ -61,7 +61,8 @@ var runLevels = function (window) {
       enemy.scaleX = -0.7
       enemy.scaleY = 0.7
       enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
-        game.changeIntegrity(-1000); // makes HalleBot loose 10 health on enemy collision
+        enemy.fadeOut(); // makes enemy fade out when shot
+        game.changeIntegrity(-51); // makes HalleBot loose 10 health on enemy collision
       };
     
       enemy.onProjectileCollision = function (){ // makes enemy.onProjcetileCollision into a function
@@ -71,19 +72,20 @@ var runLevels = function (window) {
     
     }
     function createDummy(x, y){ // creates createEnemy function
-      var enemy = game.createGameItem("dummy", 30); // creates a variable enemy and assigns it parameters
+      var enemy = game.createGameItem("dummy", 80); // creates a variable enemy and assigns it parameters
       var redSquare = draw.bitmap('img/wheatley.png'); // creates a variable and draws it
-      redSquare.x = -60; // sets the x coordinate of the enemy png in relevance to the hitbox
-      redSquare.y = -45; // sets the y coordinate of the enemy png in relevance to the hitbox
+      redSquare.x = -100; // sets the x coordinate of the enemy png in relevance to the hitbox
+      redSquare.y = -100; // sets the y coordinate of the enemy png in relevance to the hitbox
       enemy.addChild(redSquare); // adds redSquare as a child of enemy
       enemy.x = x; // assigns the enemy to the functions x parameter
       enemy.y = y // assigns the enemy to the functions y parameter
       game.addGameItem(enemy); // adds the enemy into the game
       enemy.velocityX = -5; // sets the enemy's velocity to -5 so it moves left
-      enemy.scaleX = -0.7
-      enemy.scaleY = 0.7
+      enemy.scaleX = -0.35
+      enemy.scaleY = 0.35
       enemy.onPlayerCollision = function () { // makes enemy.onPlayerCollision into a function
-        game.changeIntegrity(-75); // makes HalleBot loose 10 health on enemy collision
+        game.changeIntegrity(-101); // makes HalleBot loose 10 health on enemy collision
+        enemy.fadeOut(); // makes enemy fade out when shot
       };
     
       enemy.onProjectileCollision = function (){ // makes enemy.onProjcetileCollision into a function
@@ -92,7 +94,7 @@ var runLevels = function (window) {
       };
     }
     function createReward(x, y){ // creates a reward fuction
-      var reward = game.createGameItem("enemy", 5); // creates a variable named award and assigned it to game.CreateGameItem
+      var reward = game.createGameItem("buddy", 50); // creates a variable named award and assigned it to game.CreateGameItem
       var blueSquare = draw.bitmap('img/companion.png'); // creats a variable and draws it in the game
       blueSquare.x = -25; // sets the squares x coordinate
       blueSquare.y = -25; // sets the squares y coordinate
@@ -104,12 +106,13 @@ var runLevels = function (window) {
       reward.scaleX = .3
       reward.scaleY = .3
       reward.onPlayerCollision = function () { // makes reward.onPlayerCollision into a function
-        game.changeIntegrity(+10); // makes HalleBot loose 10 health on reward collision
-      reward.shrink(); // makes the reward shrink after contacting the player
+        game.changeIntegrity(+10); // makes HalleBot gain 10 health on reward collision
+        game.increaseScore(500)
+        reward.shrink(); // makes the reward shrink after contacting the player
       };
     }
     function createMarker(x,y){
-      var marker = game.createGameItem("enemy", 25); // creates a variable named marker and assigns it parameters
+      var marker = game.createGameItem("marker", 25); // creates a variable named marker and assigns it parameters
       var greenSquare = draw.bitmap('img/storage.png'); // draws the square representing the marker
       greenSquare.x = -25; // sets the reward's x position in relevance to it's hitbox
       greenSquare.y = -25; // sets the reward's y position in relevance to it's hitbox
@@ -139,7 +142,7 @@ var runLevels = function (window) {
         if(item.type === "enemy"){
           createEnemy(item.x, item.y)
         }
-        if(item.type === "reward"){
+        if(item.type === "buddy"){
           createReward(item.x, item.y)
         }
         if(item.type === "marker"){
@@ -147,6 +150,9 @@ var runLevels = function (window) {
         }
         if(item.type === "laser"){
           createLaser(item.x, item.y)
+        }
+        if(item.type === "dummy"){
+          createDummy(item.x, item.y)
         }
       }
 
