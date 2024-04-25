@@ -18,9 +18,9 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
-    function createSawBlade(x, y){ //creates sawBlade function (got lazy and made this another obstacle w/o renaming it)
-      var hitZoneSize = 20; //sets the spikes's hitbox size
-      var damageFromObstacle = 125; //sets the saw's damage
+    function createSawBlade(x, y){ //creates sawBlade object and defines what it will do(got lazy and made this another obstacle w/o renaming it)
+      var hitZoneSize = 20; //sets the spikes's hitbox size to
+      var damageFromObstacle = 125; //sets the spikes's damage
       var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates a "sawblade" (spike, i was lazy) hit zone obstacle 
       sawBladeHitZone.x = x; //sets the hitbox's x coordinate
       sawBladeHitZone.y = y; //sets the hitbox's y coordinate

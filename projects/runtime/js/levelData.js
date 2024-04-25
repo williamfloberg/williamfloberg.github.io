@@ -57,21 +57,12 @@ var makeLevelData = function (window) {
           {type: "buddy", x: 3000, y: groundY - 100}, //adds a reward at the set x and y coords
           {type: "buddy", x: 3200, y: groundY - 100}, //adds a reward at the set x and y coords
           {type: "buddy", x: 3400, y: groundY - 100}, //adds a reward at the set x and y coords
-          {type: "buddy", x: 3600, y: groundY - 100}, //adds a reward at the set x and y coords
+          { type: "dummy", x: 2100, y: groundY - 50}, //adds wheatley at the set x and y coords
           { type: "sawblade", x: 4000, y: groundY}, //adds a spike at the set x and y coords
           { type: "sawblade", x: 4150, y: groundY}, //adds a spike at the set x and y coords
           { type: "sawblade", x: 4300, y: groundY}, //adds a spike at the set x and y coords
           { type: "sawblade", x: 4450, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 4600, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 4750, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 4900, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5050, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5200, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5350, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5500, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5650, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5800, y: groundY}, //adds a spike at the set x and y coords
-          { type: "sawblade", x: 5950, y: groundY}, //adds a spike at the set x and y coords
+          {type: "buddy", x: 4800, y: groundY - 100}, //adds a reward at the set x and y coords
 
         ],
       },
