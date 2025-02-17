@@ -14,30 +14,44 @@ The CSS ids you will work with are:
 ///////////////////////////////////////////////////////////////////////
 
 // TODO 2: Implement bubbleSort
+//sorts the elements of the array from smallest to largest and updates swap counter 
 async function bubbleSort(array) {
-    for (let i = 0; i < array.length - 1; i++) {
-        for (let j = array.length - 1; j > i; j--) {
-            if (array[j].value < array[j - 1].value) {  
-                swap(array, j, j - 1);  
-                updateCounter(bubbleCounter);  
-                await sleep();  
+    for (var i = 0; i < array.length - 1; i++) { //creates for loop that increases in value while running through the array
+        for (var j = array.length - 1; j > i; j--) { //creates for loop that decreases in value and compares the two elements 
+            if (array[j].value < array[j - 1].value) {  //checks if array[j-1] is less than array[i], if it is then teh values get swapped
+                swap(array, j, j - 1); //swaps values of j and j-1 indexes in the array  
+                updateCounter(bubbleCounter); //updates the move count in the bubble section  
+                await sleep(); //slows down the sorting to make it so that we can it happen
             }
         }
     }
 }
 
 // TODO 3: Implement quickSort
+async function quickSort(array, left, right){
+    if(right - left < 0){ //checks if the right index minus the left index is less than 0 
+        return //stops function
+    }
 
+var index = await partition(array, left, right);
+if(left < index - 1){
+    await quickSort(array, left, index - 1);
+}
+
+if (right > index){
+    await quickSort(array, index, right)
+}
+}
 
 // TODOs 4 & 5: Implement partition
 
 
 // TODO 1: Implement swap
-function swap(array, i, j){
-    let temp = array[i];
-    array[i] = array[j]
-    array[j] = temp;
-    drawSwap(array, i, jyeah)
+function swap(array, i, j){ 
+    var temp = array[i]; //stores array[i] in a temp variable
+    array[i] = array[j] // stores array[j] in array[i]
+    array[j] = temp; //changse array[j] value to temporary value
+    drawSwap(array, i, j) //calls drawSwap function with changed variable
 }
 
 ///////////////////////////////////////////////////////////////////////
