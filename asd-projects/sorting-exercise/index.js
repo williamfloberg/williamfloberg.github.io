@@ -33,18 +33,37 @@ async function quickSort(array, left, right){
         return //stops function
     }
 
-var index = await partition(array, left, right);
-if(left < index - 1){
-    await quickSort(array, left, index - 1);
+var index = await partition(array, left, right); 
+if(left < index - 1){ //checks if left is less than index - 1
+    await quickSort(array, left, index - 1); //calls the quicksort function
 }
 
-if (right > index){
-    await quickSort(array, index, right)
+if (right > index){ //checks if right is greater than index
+    await quickSort(array, index, right) //calls the quicksort function
 }
 }
 
 // TODOs 4 & 5: Implement partition
-
+async function partition(array, left, right){
+    let pivot = array[Math.floor((right + left) / 2)].value; //creates a variable called pivot that selects the pivot amount by finding the middle index of the array
+    while(left < right){
+        while(array[right].value > pivot){
+            right--//decrease the right value
+        }
+        while(array[left].value < pivot){
+            left++
+        }
+        if(left < right){
+            swap(array, left, right);
+            updateCounter(quickCounter);
+            await sleep();
+        }
+    
+    }
+    
+    
+    return left + 1;    
+}
 
 // TODO 1: Implement swap
 function swap(array, i, j){ 
