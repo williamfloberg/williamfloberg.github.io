@@ -46,17 +46,17 @@ if (right > index){ //checks if right is greater than index
 // TODOs 4 & 5: Implement partition
 async function partition(array, left, right){
     let pivot = array[Math.floor((right + left) / 2)].value; //creates a variable called pivot that selects the pivot amount by finding the middle index of the array
-    while(left < right){
+    while(left < right){ //loops until left and right pointers cross
         while(array[right].value > pivot){
-            right--//decrease the right value
+            right--//moves right pointer leftward until a value less than pivot is found
         }
         while(array[left].value < pivot){
-            left++
+            left++ //moves left pointer rightward until a value greater than pivot is found
         }
-        if(left < right){
-            swap(array, left, right);
-            updateCounter(quickCounter);
-            await sleep();
+        if(left < right){ //swap vlaues if left is still less than right
+            swap(array, left, right); //swap elements at left and right pointers
+            updateCounter(quickCounter); //update the swap counter for Quick Sort
+            await sleep(); //pause to visualize swap
         }
     
     }
@@ -66,7 +66,7 @@ async function partition(array, left, right){
 }
 
 // TODO 1: Implement swap
-function swap(array, i, j){ 
+function swap(array, i, j){ //declares function swap with parameters array, i, and j
     var temp = array[i]; //stores array[i] in a temp variable
     array[i] = array[j] // stores array[j] in array[i]
     array[j] = temp; //changse array[j] value to temporary value
@@ -81,18 +81,17 @@ function swap(array, i, j){
 
 // this function makes the program pause by SLEEP_AMOUNT milliseconds whenever it is called
 function sleep(){
-    return new Promise(resolve => setTimeout(resolve, SLEEP_AMOUNT));
 }
 
 // This function draws the swap on the screen
-function drawSwap(array, i, j){
-    let element1 = array[i];
-    let element2 = array[j];
+function drawSwap(array, i, j){ //declares function drawSwap with parameters array, i, and j
+    let element1 = array[i]; //gets first element to swap
+    let element2 = array[j]; //gets 2nd element to swap
 
-    let temp = parseFloat($(element1.id).css("top")) + "px";
+    let temp = parseFloat($(element1.id).css("top")) + "px"; //stores current top position of element1
 
-    $(element1.id).css("top", parseFloat($(element2.id).css("top")) + "px");
-    $(element2.id).css("top", temp);
+    $(element1.id).css("top", parseFloat($(element2.id).css("top")) + "px"); //sets element1's top position to element2's top position
+    $(element2.id).css("top", temp); //sets element2's top position to the stored value
 }
 
 // This function updates the specified counter
