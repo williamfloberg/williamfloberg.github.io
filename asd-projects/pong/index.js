@@ -36,11 +36,11 @@ function runProgram(){
 
 var leftPaddle = GameItem("#leftPaddle", 0, 0)
 var rightPaddle = GameItem("#rightPaddle", 0, 0)
-
+var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1),)
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
-
+  $(document).on('keyup', handleKeyUp);     
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -54,12 +54,12 @@ var rightPaddle = GameItem("#rightPaddle", 0, 0)
     updateGameItem(leftPaddle);
     drawGameItem(rightPaddle);
     updateGameItem(rightPaddle);
+    drawGameItem(ball);
+    updateGameItem(ball);
+    wallCollision()
   }
 
-  function updateGameItem(obj){
-    obj.x += obj.speedX;
-    obj.y += obj.speedY;
-  }
+  
   
   /* 
   Called in response to events.
@@ -78,6 +78,14 @@ var rightPaddle = GameItem("#rightPaddle", 0, 0)
           rightPaddle.speedY += 5;
         }
     }
+  function handleKeyUp(event) {
+    if(event.which === KEY.W || event.which === KEY.S){
+      leftPaddle.speedY = 0;
+    }
+    if(event.which === KEY.UP || event.which === KEY.DOWN){
+      rightPaddle.speedY = 0;
+    }
+  }
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -89,7 +97,18 @@ var rightPaddle = GameItem("#rightPaddle", 0, 0)
     $(obj.id).css("top", obj.y);
   }
 
+  function updateGameItem(obj){
+    obj.x += obj.speedX;
+    obj.y += obj.speedY;
+  }
 
+  //check boundaries of paddles
+  //determines if objects collide
+  //handle what happens when the ball hits the walls
+  //handle what happens when the ball hits the paddles
+  //handle what happens when someone wins
+  //handles the points
+  //handle resetting the game
 
 
   function endGame() {

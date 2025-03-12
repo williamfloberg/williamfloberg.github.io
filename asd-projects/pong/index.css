@@ -29,3 +29,12 @@ top: 150px;
 left: 875px;   
 top: 150px;    
 }
+#ball {
+  background-color: rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+  border-radius: 500px;
+  position: absolute;
+  left: 435px;   
+  top: 220px;   
+}
