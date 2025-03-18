@@ -30,7 +30,7 @@ left: 875px;
 top: 150px;    
 }
 #ball {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
   width: 30px;
   height: 30px;
   border-radius: 500px;
