@@ -22,16 +22,16 @@ function runProgram(){
 
 
   function GameItem(id, speedX, speedY){
-  var objInstance = {
+  var obj = {
     id: id,
     x: parseFloat($(id).css("left")),
     y: parseFloat($(id).css("top")),
     speedX: speedX,
     speedY: speedY,
     w: $(id).width(),
-    h: $(id).width()
+    h: $(id).height()
   }
-  return objInstance;
+  return obj;
 }
 
 var leftPaddle = GameItem("#leftPaddle", 0, 0)
@@ -56,7 +56,9 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
     updateGameItem(rightPaddle);
     drawGameItem(ball);
     updateGameItem(ball);
-    wallCollision()
+    wallCollision(leftPaddle);
+    wallCollision(rightPaddle);
+    ballBounce(ball);
   }
 
   
@@ -100,6 +102,21 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
   function updateGameItem(obj){
     obj.x += obj.speedX;
     obj.y += obj.speedY;
+  }
+
+  function wallCollision(obj){
+if(obj.y > BOARD_HEIGHT - obj.h){
+  obj.y -= obj.speedY;
+}
+if(obj.y < 0 ){
+  obj.y -= obj.speedY
+}
+  }
+
+  function ballBounce(obj){
+if(obj.x < 0){
+  obj.x += 3;
+}
   }
 
   //check boundaries of paddles
