@@ -59,9 +59,13 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
     wallCollision(leftPaddle);
     wallCollision(rightPaddle);
     ballBounce(ball);
+    stupidSpeedLimiter(leftPaddle);
+    stupidSpeedLimiter(rightPaddle);
+    speedChecker(leftPaddle);
+    speedChecker(rightPaddle);    
   }
 
-  
+
   
   /* 
   Called in response to events.
@@ -110,6 +114,26 @@ if(obj.y > BOARD_HEIGHT - obj.h){
 }
 if(obj.y < 0 ){
   obj.y -= obj.speedY
+}
+  }
+
+  function stupidSpeedLimiter(obj) {
+    console.log("Speed before limiter:", obj.speedY);
+    if (Math.abs(obj.speedY) > 5) {
+        if (obj.speedY > 0) {
+            obj.speedY = 5;
+            console.log("speed limited to 5");
+        } else {
+            obj.speedY = -5;
+            console.log("speed limited to  -5");
+        }
+    }
+    console.log("speed after limiter:", obj.speedY);
+}
+
+  function speedChecker(obj){
+if(obj.speedY > 0 || obj.speedY < 0){
+  console.log("paddle is moving at " + obj.speedY)
 }
   }
 
