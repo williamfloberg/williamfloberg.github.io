@@ -51,18 +51,17 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
   */
   function newFrame() {
     drawGameItem(leftPaddle);
-    updateGameItem(leftPaddle);
     drawGameItem(rightPaddle);
-    updateGameItem(rightPaddle);
     drawGameItem(ball);
+    updateGameItem(leftPaddle);
+    updateGameItem(rightPaddle);
     updateGameItem(ball);
     wallCollision(leftPaddle);
     wallCollision(rightPaddle);
     ballBounce(ball);
     stupidSpeedLimiter(leftPaddle);
-    stupidSpeedLimiter(rightPaddle);
-    speedChecker(leftPaddle);
-    speedChecker(rightPaddle);    
+    stupidSpeedLimiter(rightPaddle);   
+    paddleBallCollision();
   }
 
 
@@ -108,40 +107,48 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
     obj.y += obj.speedY;
   }
 
+  function doCollide(obj1, obj2) {
+    if (obj1.x + obj1.w > obj2.x && obj1.x < obj2.x + obj2.w && obj1.y + obj1.h > obj2.y && obj1.y < obj2.y + obj2.h) {
+      return true
+    }
+    return false
+  }
+
   function wallCollision(obj){
-if(obj.y > BOARD_HEIGHT - obj.h){
-  obj.y -= obj.speedY;
-}
-if(obj.y < 0 ){
-  obj.y -= obj.speedY
-}
+    if(obj.y > BOARD_HEIGHT - obj.h){
+      obj.y -= obj.speedY;
+    }
+    if(obj.y < 0 ){
+      obj.y -= obj.speedY
+    }
   }
 
   function stupidSpeedLimiter(obj) {
-    console.log("Speed before limiter:", obj.speedY);
     if (Math.abs(obj.speedY) > 5) {
         if (obj.speedY > 0) {
             obj.speedY = 5;
-            console.log("speed limited to 5");
         } else {
-            obj.speedY = -5;
-            console.log("speed limited to  -5");
+          obj.speedY = -5;
         }
     }
-    console.log("speed after limiter:", obj.speedY);
-}
-
-  function speedChecker(obj){
-if(obj.speedY > 0 || obj.speedY < 0){
-  console.log("paddle is moving at " + obj.speedY)
-}
   }
 
   function ballBounce(obj){
-if(obj.x < 0){
-  obj.x += 3;
-}
+    if(obj.y <= 0){
+      obj.speedY = -obj.speedY;
+    }
+    if(obj.y >= BOARD_HEIGHT - obj.h){
+      obj.speedY = -obj.speedY
+    }
   }
+  function paddleBallCollision(){
+    if(doCollide(ball, leftPaddle)){
+      ball.speedX = -ball.speedX
+    }
+    if(doCollide(ball, rightPaddle)){
+      ball.speedX = -ball.speedX
+  }
+}
 
   //check boundaries of paddles
   //determines if objects collide
