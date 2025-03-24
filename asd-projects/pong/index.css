@@ -1,12 +1,12 @@
 
 body {
-  background-color: darkgreen;
+  background-color: rgb(13, 11, 37);
 }
 
 #board {
   width: 900px;
   height: 500px;
-  border: 1px solid white;
+  border: 3px solid rgb(174, 0, 255);
   background-color: black;
   position: relative;
 }
