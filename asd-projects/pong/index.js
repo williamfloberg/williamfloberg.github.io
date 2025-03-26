@@ -1,7 +1,7 @@
 /* global $, sessionStorage */
-
+ 
 $(document).ready(runProgram); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
-  
+ 
 function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// SETUP /////////////////////////////////////////////
@@ -36,6 +36,7 @@ function runProgram(){
 
 var leftPaddle = GameItem("#leftPaddle", 0, 0)
 var rightPaddle = GameItem("#rightPaddle", 0, 0)
+var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1),)
 var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -65,7 +66,7 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
   }
 
 
-  
+
   /* 
   Called in response to events.
   */
@@ -102,12 +103,11 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
     $(obj.id).css("top", obj.y);
   }
 
-  //object moving
   function updateGameItem(obj){
     obj.x += obj.speedX;
     obj.y += obj.speedY;
   }
-  //colission
+
   function doCollide(obj1, obj2) {
     if (obj1.x + obj1.w > obj2.x && obj1.x < obj2.x + obj2.w && obj1.y + obj1.h > obj2.y && obj1.y < obj2.y + obj2.h) {
       return true
@@ -122,15 +122,8 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
     if(obj.y < 0 ){
       obj.y -= obj.speedY
     }
-    if(obj.x > BOARD_WIDTH - obj.w){
-      return scoring
-      }
-    if(obj.x < 0 - obj.w){
-      return scoring
-    }
-    }
   }
-  //speed limiter
+
   function stupidSpeedLimiter(obj) {
     if (Math.abs(obj.speedY) > 5) {
         if (obj.speedY > 0) {
@@ -140,7 +133,7 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
         }
     }
   }
-  //ball bounce
+
   function ballBounce(obj){
     if(obj.y <= 0){
       obj.speedY = -obj.speedY;
@@ -158,10 +151,7 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
   }
 }
 
-  //scoring
-  function scoring(){
-  if(doCollide(ball,))
-  }
+  
 
   //check boundaries of paddles
   //determines if objects collide
@@ -179,5 +169,5 @@ var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -
     // turn off event handlers
     $(document).off();
   }
-  
+
 }
