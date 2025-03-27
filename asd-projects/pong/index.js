@@ -1,55 +1,55 @@
 /* global $, sessionStorage */
-
+ 
 $(document).ready(runProgram); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
-
+ 
 function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// SETUP /////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
 
   // Constant Variables
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
+  const leftScoreElement = document.getElementById("leftScore");
+  const rightScoreElement = document.getElementById("rightScore");
   // Game Item Objects
   const KEY = {
-    'W': 87,
-    'S': 83,
-    'UP': 38,
-    'DOWN': 40,
-  }
+  'W': 87,
+  'S': 83,
+  'UP': 38,
+  'DOWN': 40,
+}
 
 
   function GameItem(id, speedX, speedY){
-    var obj = {
-      id: id,
-      x: parseFloat($(id).css("left")),
-      y: parseFloat($(id).css("top")),
-      speedX: speedX,
-      speedY: speedY,
-      w: $(id).width(),
-      h: $(id).height()
-    }
-    return obj;
+  var obj = {
+    id: id,
+    x: parseFloat($(id).css("left")),
+    y: parseFloat($(id).css("top")),
+    speedX: speedX,
+    speedY: speedY,
+    w: $(id).width(),
+    h: $(id).height()
   }
+  return obj;
+}
 
-  var leftPaddle = GameItem("#leftPaddle", 0, 0)
-  var rightPaddle = GameItem("#rightPaddle", 0, 0)
-  var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
-  var leftScore = 0;
-  var rightScore = 0;
-  $("#leftScore").text(leftScore);
-  $("#rightScore").text(rightScore);
+var leftScore = 0;
+var rightScore = 0;
+var leftPaddle = GameItem("#leftPaddle", 0, 0)
+var rightPaddle = GameItem("#rightPaddle", 0, 0)
+var ball = GameItem("#ball",  (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on('keydown', handleKeyDown);                      // change 'eventType' to the type of event you want to handle
-  $(document).on('keyup', handleKeyUp);
+  $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
+  $(document).on('keyup', handleKeyUp);     
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
 
-  /*
+  /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
@@ -64,13 +64,14 @@ function runProgram(){
     wallCollision(rightPaddle);
     ballBounce(ball);
     stupidSpeedLimiter(leftPaddle);
-    stupidSpeedLimiter(rightPaddle);
+    stupidSpeedLimiter(rightPaddle);   
     paddleBallCollision();
-    scoring();
+    scoring(ball);
   }
 
 
-  /*
+
+  /* 
   Called in response to events.
   */
   function handleKeyDown(event) {
@@ -86,7 +87,7 @@ function runProgram(){
       if(event.which === KEY.DOWN){
           rightPaddle.speedY += 5;
         }
-      }
+    }
   function handleKeyUp(event) {
     if(event.which === KEY.W || event.which === KEY.S){
       leftPaddle.speedY = 0;
@@ -98,7 +99,7 @@ function runProgram(){
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
 
   //movement helpers
   function drawGameItem(obj){
@@ -124,14 +125,6 @@ function runProgram(){
     }
     if(obj.y < 0 ){
       obj.y -= obj.speedY
-    }
-    if(obj.x > BOARD_WIDTH - obj.w){
-      return 'right'
-      }
-    if(obj.x < 0 - obj.w){
-      return 'left'
-    }
-    return null;
     }
   }
 
@@ -162,30 +155,15 @@ function runProgram(){
   }
 }
 
-  //scoring
-  function scoring(){
-    let collisionResult = wallCollision(ball);
-    if (collisionResult === 'right') {
-      leftScore++;
-      $("#leftScore").text(leftScore);
-      resetBall();
-    } else if (collisionResult === 'left') {
-      rightScore++;
-      $("#rightScore").text(rightScore);
-      resetBall();
-    }
+  function scoring(obj){
+  if(obj.x <= 0){
+    console.log("left scored!")
+  }
+  if(obj.x > BOARD_WIDTH){
+    console.log("right scored!")
+  }
   }
 
-  function resetBall() {
-    ball.x = BOARD_WIDTH / 2 - ball.w / 2;
-    ball.y = BOARD_HEIGHT / 2 - ball.h / 2;
-    ball.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-    ball.speedY = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-  }
-
-  function scoring(){
-    
-  }
   //check boundaries of paddles
   //determines if objects collide
   //handle what happens when the ball hits the walls
@@ -203,3 +181,4 @@ function runProgram(){
     $(document).off();
   }
 
+}

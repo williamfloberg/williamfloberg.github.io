@@ -38,3 +38,12 @@ top: 150px;
   left: 435px;   
   top: 220px;   
 }
+#scores {
+  position: absolute; 
+  top: 10px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-family: 'Courier New', Courier, monospace, sans-serif ;
+  font-size: 24px; 
+  color: white; 
+}
