@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
-    <!-- Load CSS files -->
+    <title>Square Pong</title>
     <link rel="stylesheet" type="text/css" href="index.css">
-    
-    <!-- Load JavaScript files -->
     <script src="jquery.min.js"></script>
     <script src="index.js"></script>
-    <style></style>
   </head>
-  
   <body>
-    <div id='board'>
-      <div id='leftPaddle'></div>
-      <div id='rightPaddle'></div>
-      <div id='ball'></div>
+    <div id="board">
+      <div id="leftPaddle" class="paddle"></div>
+      <div id="rightPaddle" class="paddle"></div>
+      <div id="topPaddle" class="paddle-horizontal"></div>
+      <div id="bottomPaddle" class="paddle-horizontal"></div>
+      <div id="ball"></div>
       <div id="scores">
-        Left Score: <span id="leftScore">0</span>
-        Right Score: <span id="rightScore">0</span>
+        Left Player: <span id="leftScore">0</span> |
+        Right Player: <span id="rightScore">0</span>
       </div>
+      <div id="startOverlay">Press any key to start!</div>
     </div>
   </body>
 </html>
