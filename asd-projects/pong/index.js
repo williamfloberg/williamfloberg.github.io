@@ -1,3 +1,4 @@
+$(document).ready(runProgram);
 function runProgram() {
   //constants for framerate and board dimensions
   const FRAME_RATE = 60;
@@ -79,10 +80,16 @@ function runProgram() {
 
   //handle key down events (start game or move paddles)
   function handleKeyDown(e) {
-    if (!gameStarted) startGame();
-
+    if (!gameStarted) {
+      startGame(); // Start game on first key press
+      return; // Prevent paddle from moving during this first key
+    }
+  
+    // Player 1 (Left Paddles)
     if (e.which === KEY.W) leftPaddle.speedY = -10;
     if (e.which === KEY.S) leftPaddle.speedY = 10;
+  
+    // Player 2 (Right Paddles)
     if (e.which === KEY.UP) rightPaddle.speedY = -10;
     if (e.which === KEY.DOWN) rightPaddle.speedY = 10;
   }
